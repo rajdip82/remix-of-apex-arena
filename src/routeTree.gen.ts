@@ -19,6 +19,14 @@ import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppTournamentsRouteImport } from './routes/app.tournaments'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMyTeamsRouteImport } from './routes/app.my-teams'
+import { Route as AppMyRegistrationsRouteImport } from './routes/app.my-registrations'
+import { Route as AppLeaderboardRouteImport } from './routes/app.leaderboard'
+import { Route as AppHomeRouteImport } from './routes/app.home'
+import { Route as AppTournamentIdRouteImport } from './routes/app.tournament.$id'
 
 const VerifyOtpRoute = VerifyOtpRouteImport.update({
   id: '/verify-otp',
@@ -70,6 +78,46 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppTournamentsRoute = AppTournamentsRouteImport.update({
+  id: '/app/tournaments',
+  path: '/app/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/app/profile',
+  path: '/app/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/app/notifications',
+  path: '/app/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMyTeamsRoute = AppMyTeamsRouteImport.update({
+  id: '/app/my-teams',
+  path: '/app/my-teams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMyRegistrationsRoute = AppMyRegistrationsRouteImport.update({
+  id: '/app/my-registrations',
+  path: '/app/my-registrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppLeaderboardRoute = AppLeaderboardRouteImport.update({
+  id: '/app/leaderboard',
+  path: '/app/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppHomeRoute = AppHomeRouteImport.update({
+  id: '/app/home',
+  path: '/app/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppTournamentIdRoute = AppTournamentIdRouteImport.update({
+  id: '/app/tournament/$id',
+  path: '/app/tournament/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +130,14 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +150,14 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +171,14 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +193,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/app/tournament/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +213,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/app/tournament/$id'
   id:
     | '__root__'
     | '/'
@@ -145,6 +233,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/app/tournament/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +254,14 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TournamentsRoute: typeof TournamentsRoute
   VerifyOtpRoute: typeof VerifyOtpRoute
+  AppHomeRoute: typeof AppHomeRoute
+  AppLeaderboardRoute: typeof AppLeaderboardRoute
+  AppMyRegistrationsRoute: typeof AppMyRegistrationsRoute
+  AppMyTeamsRoute: typeof AppMyTeamsRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppTournamentsRoute: typeof AppTournamentsRoute
+  AppTournamentIdRoute: typeof AppTournamentIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +336,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/tournaments': {
+      id: '/app/tournaments'
+      path: '/app/tournaments'
+      fullPath: '/app/tournaments'
+      preLoaderRoute: typeof AppTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/app/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/app/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/my-teams': {
+      id: '/app/my-teams'
+      path: '/app/my-teams'
+      fullPath: '/app/my-teams'
+      preLoaderRoute: typeof AppMyTeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/my-registrations': {
+      id: '/app/my-registrations'
+      path: '/app/my-registrations'
+      fullPath: '/app/my-registrations'
+      preLoaderRoute: typeof AppMyRegistrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/leaderboard': {
+      id: '/app/leaderboard'
+      path: '/app/leaderboard'
+      fullPath: '/app/leaderboard'
+      preLoaderRoute: typeof AppLeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/home': {
+      id: '/app/home'
+      path: '/app/home'
+      fullPath: '/app/home'
+      preLoaderRoute: typeof AppHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/tournament/$id': {
+      id: '/app/tournament/$id'
+      path: '/app/tournament/$id'
+      fullPath: '/app/tournament/$id'
+      preLoaderRoute: typeof AppTournamentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +406,14 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TournamentsRoute: TournamentsRoute,
   VerifyOtpRoute: VerifyOtpRoute,
+  AppHomeRoute: AppHomeRoute,
+  AppLeaderboardRoute: AppLeaderboardRoute,
+  AppMyRegistrationsRoute: AppMyRegistrationsRoute,
+  AppMyTeamsRoute: AppMyTeamsRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppTournamentsRoute: AppTournamentsRoute,
+  AppTournamentIdRoute: AppTournamentIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

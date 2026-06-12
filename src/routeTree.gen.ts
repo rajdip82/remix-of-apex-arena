@@ -19,6 +19,7 @@ import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AppTournamentsRouteImport } from './routes/app.tournaments'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
 import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
@@ -26,6 +27,13 @@ import { Route as AppMyTeamsRouteImport } from './routes/app.my-teams'
 import { Route as AppMyRegistrationsRouteImport } from './routes/app.my-registrations'
 import { Route as AppLeaderboardRouteImport } from './routes/app.leaderboard'
 import { Route as AppHomeRouteImport } from './routes/app.home'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTournamentsRouteImport } from './routes/admin.tournaments'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminRedeemCodesRouteImport } from './routes/admin.redeem-codes'
+import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminApprovalsRouteImport } from './routes/admin.approvals'
 import { Route as AppTournamentIdRouteImport } from './routes/app.tournament.$id'
 
 const VerifyOtpRoute = VerifyOtpRouteImport.update({
@@ -78,6 +86,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppTournamentsRoute = AppTournamentsRouteImport.update({
   id: '/app/tournaments',
   path: '/app/tournaments',
@@ -113,6 +126,41 @@ const AppHomeRoute = AppHomeRouteImport.update({
   path: '/app/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTournamentsRoute = AdminTournamentsRouteImport.update({
+  id: '/admin/tournaments',
+  path: '/admin/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/admin/reports',
+  path: '/admin/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRedeemCodesRoute = AdminRedeemCodesRouteImport.update({
+  id: '/admin/redeem-codes',
+  path: '/admin/redeem-codes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
+  id: '/admin/payments',
+  path: '/admin/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminApprovalsRoute = AdminApprovalsRouteImport.update({
+  id: '/admin/approvals',
+  path: '/admin/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppTournamentIdRoute = AppTournamentIdRouteImport.update({
   id: '/app/tournament/$id',
   path: '/app/tournament/$id',
@@ -130,6 +178,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/home': typeof AppHomeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/my-registrations': typeof AppMyRegistrationsRoute
@@ -137,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/admin/': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesByTo {
@@ -150,6 +206,13 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/home': typeof AppHomeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/my-registrations': typeof AppMyRegistrationsRoute
@@ -157,6 +220,7 @@ export interface FileRoutesByTo {
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/admin': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesById {
@@ -171,6 +235,13 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/home': typeof AppHomeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/my-registrations': typeof AppMyRegistrationsRoute
@@ -178,6 +249,7 @@ export interface FileRoutesById {
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/admin/': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRouteTypes {
@@ -193,6 +265,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
     | '/app/home'
     | '/app/leaderboard'
     | '/app/my-registrations'
@@ -200,6 +279,7 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/profile'
     | '/app/tournaments'
+    | '/admin/'
     | '/app/tournament/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -213,6 +293,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
     | '/app/home'
     | '/app/leaderboard'
     | '/app/my-registrations'
@@ -220,6 +307,7 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/profile'
     | '/app/tournaments'
+    | '/admin'
     | '/app/tournament/$id'
   id:
     | '__root__'
@@ -233,6 +321,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tournaments'
     | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
     | '/app/home'
     | '/app/leaderboard'
     | '/app/my-registrations'
@@ -240,6 +335,7 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/profile'
     | '/app/tournaments'
+    | '/admin/'
     | '/app/tournament/$id'
   fileRoutesById: FileRoutesById
 }
@@ -254,6 +350,13 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TournamentsRoute: typeof TournamentsRoute
   VerifyOtpRoute: typeof VerifyOtpRoute
+  AdminApprovalsRoute: typeof AdminApprovalsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminPaymentsRoute: typeof AdminPaymentsRoute
+  AdminRedeemCodesRoute: typeof AdminRedeemCodesRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminTournamentsRoute: typeof AdminTournamentsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   AppHomeRoute: typeof AppHomeRoute
   AppLeaderboardRoute: typeof AppLeaderboardRoute
   AppMyRegistrationsRoute: typeof AppMyRegistrationsRoute
@@ -261,6 +364,7 @@ export interface RootRouteChildren {
   AppNotificationsRoute: typeof AppNotificationsRoute
   AppProfileRoute: typeof AppProfileRoute
   AppTournamentsRoute: typeof AppTournamentsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   AppTournamentIdRoute: typeof AppTournamentIdRoute
 }
 
@@ -336,6 +440,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/tournaments': {
       id: '/app/tournaments'
       path: '/app/tournaments'
@@ -385,6 +496,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/tournaments': {
+      id: '/admin/tournaments'
+      path: '/admin/tournaments'
+      fullPath: '/admin/tournaments'
+      preLoaderRoute: typeof AdminTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/admin/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/redeem-codes': {
+      id: '/admin/redeem-codes'
+      path: '/admin/redeem-codes'
+      fullPath: '/admin/redeem-codes'
+      preLoaderRoute: typeof AdminRedeemCodesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/payments': {
+      id: '/admin/payments'
+      path: '/admin/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AdminPaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/approvals': {
+      id: '/admin/approvals'
+      path: '/admin/approvals'
+      fullPath: '/admin/approvals'
+      preLoaderRoute: typeof AdminApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/tournament/$id': {
       id: '/app/tournament/$id'
       path: '/app/tournament/$id'
@@ -406,6 +566,13 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TournamentsRoute: TournamentsRoute,
   VerifyOtpRoute: VerifyOtpRoute,
+  AdminApprovalsRoute: AdminApprovalsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminPaymentsRoute: AdminPaymentsRoute,
+  AdminRedeemCodesRoute: AdminRedeemCodesRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminTournamentsRoute: AdminTournamentsRoute,
+  AdminUsersRoute: AdminUsersRoute,
   AppHomeRoute: AppHomeRoute,
   AppLeaderboardRoute: AppLeaderboardRoute,
   AppMyRegistrationsRoute: AppMyRegistrationsRoute,
@@ -413,6 +580,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppNotificationsRoute: AppNotificationsRoute,
   AppProfileRoute: AppProfileRoute,
   AppTournamentsRoute: AppTournamentsRoute,
+  AdminIndexRoute: AdminIndexRoute,
   AppTournamentIdRoute: AppTournamentIdRoute,
 }
 export const routeTree = rootRouteImport

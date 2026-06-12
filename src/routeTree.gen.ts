@@ -9,38 +9,430 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VerifyOtpRouteImport } from './routes/verify-otp'
+import { Route as TournamentsRouteImport } from './routes/tournaments'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AppTournamentsRouteImport } from './routes/app.tournaments'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMyTeamsRouteImport } from './routes/app.my-teams'
+import { Route as AppMyRegistrationsRouteImport } from './routes/app.my-registrations'
+import { Route as AppLeaderboardRouteImport } from './routes/app.leaderboard'
+import { Route as AppHomeRouteImport } from './routes/app.home'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTournamentsRouteImport } from './routes/admin.tournaments'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminRedeemCodesRouteImport } from './routes/admin.redeem-codes'
+import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminApprovalsRouteImport } from './routes/admin.approvals'
+import { Route as AppTournamentIdRouteImport } from './routes/app.tournament.$id'
 
+const VerifyOtpRoute = VerifyOtpRouteImport.update({
+  id: '/verify-otp',
+  path: '/verify-otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TournamentsRoute = TournamentsRouteImport.update({
+  id: '/tournaments',
+  path: '/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppTournamentsRoute = AppTournamentsRouteImport.update({
+  id: '/app/tournaments',
+  path: '/app/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/app/profile',
+  path: '/app/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/app/notifications',
+  path: '/app/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMyTeamsRoute = AppMyTeamsRouteImport.update({
+  id: '/app/my-teams',
+  path: '/app/my-teams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMyRegistrationsRoute = AppMyRegistrationsRouteImport.update({
+  id: '/app/my-registrations',
+  path: '/app/my-registrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppLeaderboardRoute = AppLeaderboardRouteImport.update({
+  id: '/app/leaderboard',
+  path: '/app/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppHomeRoute = AppHomeRouteImport.update({
+  id: '/app/home',
+  path: '/app/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTournamentsRoute = AdminTournamentsRouteImport.update({
+  id: '/admin/tournaments',
+  path: '/admin/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/admin/reports',
+  path: '/admin/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRedeemCodesRoute = AdminRedeemCodesRouteImport.update({
+  id: '/admin/redeem-codes',
+  path: '/admin/redeem-codes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
+  id: '/admin/payments',
+  path: '/admin/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminApprovalsRoute = AdminApprovalsRouteImport.update({
+  id: '/admin/approvals',
+  path: '/admin/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppTournamentIdRoute = AppTournamentIdRouteImport.update({
+  id: '/app/tournament/$id',
+  path: '/app/tournament/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/login': typeof LoginRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/tournaments': typeof TournamentsRoute
+  '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/login': typeof LoginRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/tournaments': typeof TournamentsRoute
+  '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/admin': typeof AdminIndexRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/login': typeof LoginRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/tournaments': typeof TournamentsRoute
+  '/verify-otp': typeof VerifyOtpRoute
+  '/admin/approvals': typeof AdminApprovalsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/redeem-codes': typeof AdminRedeemCodesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/tournaments': typeof AdminTournamentsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/app/home': typeof AppHomeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/my-registrations': typeof AppMyRegistrationsRoute
+  '/app/my-teams': typeof AppMyTeamsRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/tournaments': typeof AppTournamentsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/tournament/$id': typeof AppTournamentIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/leaderboard'
+    | '/login'
+    | '/privacy-policy'
+    | '/signup'
+    | '/terms'
+    | '/tournaments'
+    | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/admin/'
+    | '/app/tournament/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/leaderboard'
+    | '/login'
+    | '/privacy-policy'
+    | '/signup'
+    | '/terms'
+    | '/tournaments'
+    | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/admin'
+    | '/app/tournament/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/leaderboard'
+    | '/login'
+    | '/privacy-policy'
+    | '/signup'
+    | '/terms'
+    | '/tournaments'
+    | '/verify-otp'
+    | '/admin/approvals'
+    | '/admin/dashboard'
+    | '/admin/payments'
+    | '/admin/redeem-codes'
+    | '/admin/reports'
+    | '/admin/tournaments'
+    | '/admin/users'
+    | '/app/home'
+    | '/app/leaderboard'
+    | '/app/my-registrations'
+    | '/app/my-teams'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/tournaments'
+    | '/admin/'
+    | '/app/tournament/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  LoginRoute: typeof LoginRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  SignupRoute: typeof SignupRoute
+  TermsRoute: typeof TermsRoute
+  TournamentsRoute: typeof TournamentsRoute
+  VerifyOtpRoute: typeof VerifyOtpRoute
+  AdminApprovalsRoute: typeof AdminApprovalsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminPaymentsRoute: typeof AdminPaymentsRoute
+  AdminRedeemCodesRoute: typeof AdminRedeemCodesRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminTournamentsRoute: typeof AdminTournamentsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AppHomeRoute: typeof AppHomeRoute
+  AppLeaderboardRoute: typeof AppLeaderboardRoute
+  AppMyRegistrationsRoute: typeof AppMyRegistrationsRoute
+  AppMyTeamsRoute: typeof AppMyTeamsRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppTournamentsRoute: typeof AppTournamentsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AppTournamentIdRoute: typeof AppTournamentIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/verify-otp': {
+      id: '/verify-otp'
+      path: '/verify-otp'
+      fullPath: '/verify-otp'
+      preLoaderRoute: typeof VerifyOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tournaments': {
+      id: '/tournaments'
+      path: '/tournaments'
+      fullPath: '/tournaments'
+      preLoaderRoute: typeof TournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +440,149 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/tournaments': {
+      id: '/app/tournaments'
+      path: '/app/tournaments'
+      fullPath: '/app/tournaments'
+      preLoaderRoute: typeof AppTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/app/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/app/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/my-teams': {
+      id: '/app/my-teams'
+      path: '/app/my-teams'
+      fullPath: '/app/my-teams'
+      preLoaderRoute: typeof AppMyTeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/my-registrations': {
+      id: '/app/my-registrations'
+      path: '/app/my-registrations'
+      fullPath: '/app/my-registrations'
+      preLoaderRoute: typeof AppMyRegistrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/leaderboard': {
+      id: '/app/leaderboard'
+      path: '/app/leaderboard'
+      fullPath: '/app/leaderboard'
+      preLoaderRoute: typeof AppLeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/home': {
+      id: '/app/home'
+      path: '/app/home'
+      fullPath: '/app/home'
+      preLoaderRoute: typeof AppHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/tournaments': {
+      id: '/admin/tournaments'
+      path: '/admin/tournaments'
+      fullPath: '/admin/tournaments'
+      preLoaderRoute: typeof AdminTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/admin/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/redeem-codes': {
+      id: '/admin/redeem-codes'
+      path: '/admin/redeem-codes'
+      fullPath: '/admin/redeem-codes'
+      preLoaderRoute: typeof AdminRedeemCodesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/payments': {
+      id: '/admin/payments'
+      path: '/admin/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AdminPaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/approvals': {
+      id: '/admin/approvals'
+      path: '/admin/approvals'
+      fullPath: '/admin/approvals'
+      preLoaderRoute: typeof AdminApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/tournament/$id': {
+      id: '/app/tournament/$id'
+      path: '/app/tournament/$id'
+      fullPath: '/app/tournament/$id'
+      preLoaderRoute: typeof AppTournamentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  LoginRoute: LoginRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  SignupRoute: SignupRoute,
+  TermsRoute: TermsRoute,
+  TournamentsRoute: TournamentsRoute,
+  VerifyOtpRoute: VerifyOtpRoute,
+  AdminApprovalsRoute: AdminApprovalsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminPaymentsRoute: AdminPaymentsRoute,
+  AdminRedeemCodesRoute: AdminRedeemCodesRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminTournamentsRoute: AdminTournamentsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AppHomeRoute: AppHomeRoute,
+  AppLeaderboardRoute: AppLeaderboardRoute,
+  AppMyRegistrationsRoute: AppMyRegistrationsRoute,
+  AppMyTeamsRoute: AppMyTeamsRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppTournamentsRoute: AppTournamentsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AppTournamentIdRoute: AppTournamentIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

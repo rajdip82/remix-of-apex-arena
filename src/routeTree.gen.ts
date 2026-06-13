@@ -20,7 +20,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AppTournamentsRouteImport } from './routes/app.tournaments'
+import { Route as AppProfileSetupRouteImport } from './routes/app.profile-setup'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
 import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
 import { Route as AppMyTeamsRouteImport } from './routes/app.my-teams'
@@ -91,9 +93,19 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppTournamentsRoute = AppTournamentsRouteImport.update({
   id: '/app/tournaments',
   path: '/app/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppProfileSetupRoute = AppProfileSetupRouteImport.update({
+  id: '/app/profile-setup',
+  path: '/app/profile-setup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppProfileRoute = AppProfileRouteImport.update({
@@ -191,7 +203,9 @@ export interface FileRoutesByFullPath {
   '/app/my-teams': typeof AppMyTeamsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
+  '/app/profile-setup': typeof AppProfileSetupRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
@@ -219,7 +233,9 @@ export interface FileRoutesByTo {
   '/app/my-teams': typeof AppMyTeamsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
+  '/app/profile-setup': typeof AppProfileSetupRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
@@ -248,7 +264,9 @@ export interface FileRoutesById {
   '/app/my-teams': typeof AppMyTeamsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/profile': typeof AppProfileRoute
+  '/app/profile-setup': typeof AppProfileSetupRoute
   '/app/tournaments': typeof AppTournamentsRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
   '/app/tournament/$id': typeof AppTournamentIdRoute
 }
@@ -278,7 +296,9 @@ export interface FileRouteTypes {
     | '/app/my-teams'
     | '/app/notifications'
     | '/app/profile'
+    | '/app/profile-setup'
     | '/app/tournaments'
+    | '/auth/callback'
     | '/admin/'
     | '/app/tournament/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -306,7 +326,9 @@ export interface FileRouteTypes {
     | '/app/my-teams'
     | '/app/notifications'
     | '/app/profile'
+    | '/app/profile-setup'
     | '/app/tournaments'
+    | '/auth/callback'
     | '/admin'
     | '/app/tournament/$id'
   id:
@@ -334,7 +356,9 @@ export interface FileRouteTypes {
     | '/app/my-teams'
     | '/app/notifications'
     | '/app/profile'
+    | '/app/profile-setup'
     | '/app/tournaments'
+    | '/auth/callback'
     | '/admin/'
     | '/app/tournament/$id'
   fileRoutesById: FileRoutesById
@@ -363,7 +387,9 @@ export interface RootRouteChildren {
   AppMyTeamsRoute: typeof AppMyTeamsRoute
   AppNotificationsRoute: typeof AppNotificationsRoute
   AppProfileRoute: typeof AppProfileRoute
+  AppProfileSetupRoute: typeof AppProfileSetupRoute
   AppTournamentsRoute: typeof AppTournamentsRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AppTournamentIdRoute: typeof AppTournamentIdRoute
 }
@@ -447,11 +473,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/auth/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/tournaments': {
       id: '/app/tournaments'
       path: '/app/tournaments'
       fullPath: '/app/tournaments'
       preLoaderRoute: typeof AppTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/profile-setup': {
+      id: '/app/profile-setup'
+      path: '/app/profile-setup'
+      fullPath: '/app/profile-setup'
+      preLoaderRoute: typeof AppProfileSetupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/profile': {
@@ -579,7 +619,9 @@ const rootRouteChildren: RootRouteChildren = {
   AppMyTeamsRoute: AppMyTeamsRoute,
   AppNotificationsRoute: AppNotificationsRoute,
   AppProfileRoute: AppProfileRoute,
+  AppProfileSetupRoute: AppProfileSetupRoute,
   AppTournamentsRoute: AppTournamentsRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
   AdminIndexRoute: AdminIndexRoute,
   AppTournamentIdRoute: AppTournamentIdRoute,
 }

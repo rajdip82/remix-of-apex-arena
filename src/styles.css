@@ -173,3 +173,20 @@
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
 }
+
+@utility tx-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.15s;
+  &:focus {
+    border-color: var(--primary);
+  }
+  &::placeholder { color: var(--muted-foreground); }
+  option { background: var(--surface-2); color: var(--foreground); }
+}

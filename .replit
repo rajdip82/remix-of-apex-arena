@@ -1,0 +1,50 @@
+modules = ["nodejs-20", "web"]
+[agent]
+expertMode = true
+stack = "BEST_EFFORT_FALLBACK"
+
+[nix]
+channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+SUPABASE_PROJECT_ID = "aqrsjdnymuyrqmwxzjlv"
+SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcnNqZG55bXV5cnFtd3h6amx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzcwMDQsImV4cCI6MjA5NjkxMzAwNH0._FYe-BLPEY6l1AwLdGqs14BKxrF7g7UmD2VR-qbv_Sg"
+SUPABASE_URL = "https://aqrsjdnymuyrqmwxzjlv.supabase.co"
+VITE_SUPABASE_PROJECT_ID = "aqrsjdnymuyrqmwxzjlv"
+VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcnNqZG55bXV5cnFtd3h6amx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzcwMDQsImV4cCI6MjA5NjkxMzAwNH0._FYe-BLPEY6l1AwLdGqs14BKxrF7g7UmD2VR-qbv_Sg"
+VITE_SUPABASE_URL = "https://aqrsjdnymuyrqmwxzjlv.supabase.co"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bun run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["bun", "run", "preview"]
+build = ["bun", "run", "build"]

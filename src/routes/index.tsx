@@ -198,10 +198,10 @@ function CatStat({ value, label }: { value: string; label: string }) {
 
 function Stats() {
   const items = [
-    { value: platformStats.players.toLocaleString(), label: "Registered Players", icon: Users },
-    { value: platformStats.tournaments.toLocaleString(), label: "Matches Hosted", icon: Trophy },
+    { value: platformStats.players.toLocaleString('en-IN'), label: "Registered Players", icon: Users },
+    { value: platformStats.tournaments.toLocaleString('en-IN'), label: "Matches Hosted", icon: Trophy },
     { value: shortInr(platformStats.prizeDistributed), label: "Prize Distributed", icon: Sparkles },
-    { value: platformStats.dailyActive.toLocaleString(), label: "Daily Active", icon: Flame },
+    { value: platformStats.dailyActive.toLocaleString('en-IN'), label: "Daily Active", icon: Flame },
   ];
   return (
     <section className="relative px-4 py-20 sm:px-6">

@@ -12,7 +12,7 @@ export const Route = createFileRoute("/admin/dashboard")({
 function Dashboard() {
   const kpis = [
     { icon: Wallet, label: "Gross Revenue", value: shortInr(847500), trend: "+12.4%" },
-    { icon: Users, label: "Active Users", value: platformStats.dailyActive.toLocaleString(), trend: "+5.2%" },
+    { icon: Users, label: "Active Users", value: platformStats.dailyActive.toLocaleString('en-IN'), trend: "+5.2%" },
     { icon: Activity, label: "Registrations", value: "3,184", trend: "+18.6%" },
     { icon: Clock, label: "Pending Approvals", value: String(pendingPayments.length), trend: "live" },
   ];

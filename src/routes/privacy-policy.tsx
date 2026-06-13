@@ -14,7 +14,7 @@ export function Legal({ title, body }: { title: string; body: string }) {
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
         <h1 className="font-display text-5xl">{title}</h1>
         <p className="mt-6 leading-relaxed text-muted-foreground">{body}</p>
-        <p className="mt-4 text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
+        <p suppressHydrationWarning className="mt-4 text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
       </main>
       <Footer />
     </div>

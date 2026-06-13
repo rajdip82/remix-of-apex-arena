@@ -30,7 +30,7 @@ export function Footer() {
         ]} />
       </div>
       <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
-        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} TournamentX. All rights reserved.</p>
+        <p suppressHydrationWarning className="text-xs text-muted-foreground">© {new Date().getFullYear()} TournamentX. All rights reserved.</p>
         <div className="flex items-center gap-3">
           {[MessageCircle, Instagram, Youtube, Facebook].map((Icon, i) => (
             <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-lg border border-border text-muted-foreground transition hover:border-primary hover:text-primary">

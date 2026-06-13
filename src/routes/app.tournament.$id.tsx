@@ -20,6 +20,7 @@ export const Route = createFileRoute("/app/tournament/$id")({
 function TournamentDetail() {
   const { tournament: t } = Route.useLoaderData();
   const [tab, setTab] = useState<"overview" | "rules" | "teams" | "register">("overview");
+  const [regId] = useState(() => Math.floor(Math.random() * 99999));
 
   return (
     <AppShell title={t.name}>
@@ -35,14 +36,14 @@ function TournamentDetail() {
             <StatusBadge status={t.status} />
           </div>
           <h1 className="mt-4 font-display text-4xl sm:text-6xl">{t.name}</h1>
-          <p className="mt-2 text-white/80">Map: {t.map} · Starts in {countdown(t.startsAt)}</p>
+          <p suppressHydrationWarning className="mt-2 text-white/80">Map: {t.map} · Starts in {countdown(t.startsAt)}</p>
         </div>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-4">
         <KPI icon={Trophy} label="Prize Pool" value={inr(t.prizePool)} accent />
         <KPI icon={Users} label="Slots" value={`${t.filled}/${t.slots}`} />
-        <KPI icon={Clock} label="Starts" value={countdown(t.startsAt)} />
+        <KPI icon={Clock} suppressHydration label="Starts" value={countdown(t.startsAt)} />
         <KPI icon={Map} label="Entry Fee" value={t.entryFee === 0 ? "FREE" : inr(t.entryFee)} />
       </div>
 
@@ -65,11 +66,11 @@ function TournamentDetail() {
   );
 }
 
-function KPI({ icon: Icon, label, value, accent }: { icon: typeof Trophy; label: string; value: string; accent?: boolean }) {
+function KPI({ icon: Icon, label, value, accent, suppressHydration }: { icon: typeof Trophy; label: string; value: string; accent?: boolean; suppressHydration?: boolean }) {
   return (
     <div className="glass-card p-4">
       <Icon className={`h-5 w-5 ${accent ? "text-primary" : "text-muted-foreground"}`} />
-      <p className={`mt-3 font-display text-2xl ${accent ? "text-gradient-primary" : ""}`}>{value}</p>
+      <p suppressHydrationWarning={suppressHydration} className={`mt-3 font-display text-2xl ${accent ? "text-gradient-primary" : ""}`}>{value}</p>
       <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</p>
     </div>
   );
@@ -229,7 +230,7 @@ function Register({ t }: { t: typeof tournaments[number] }) {
         <div className="text-center py-6">
           <div className="mx-auto grid h-16 w-16 place-items-center rounded-full gradient-primary shadow-glow"><Check className="h-8 w-8 text-white" /></div>
           <h3 className="mt-4 font-display text-2xl">Registration Submitted</h3>
-          <p className="mt-2 text-sm text-muted-foreground">Your registration ID is <span className="font-mono text-primary">TX-{Math.floor(Math.random() * 99999)}</span>. Admin verification usually completes in under 30 minutes.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Your registration ID is <span className="font-mono text-primary">TX-{regId}</span>. Admin verification usually completes in under 30 minutes.</p>
           <Link to="/app/my-registrations" className="mt-6 inline-block rounded-xl gradient-primary px-5 py-2.5 text-sm font-bold shadow-glow">View My Registrations</Link>
         </div>
       )}

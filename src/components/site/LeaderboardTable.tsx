@@ -44,7 +44,7 @@ export function LeaderboardTable() {
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full gradient-primary px-2.5 py-0.5 text-[10px] font-bold">#{p.rank}</span>
               </div>
               <h3 className="mt-4 font-display text-xl">{p.username}</h3>
-              <p className="font-display text-2xl text-gradient-primary">{p.points.toLocaleString()}</p>
+              <p className="font-display text-2xl text-gradient-primary">{p.points.toLocaleString('en-IN')}</p>
               <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Points</p>
             </motion.div>
           );
@@ -84,7 +84,7 @@ export function LeaderboardTable() {
                 <td className="hidden px-4 py-3 text-muted-foreground sm:table-cell">{p.matches}</td>
                 <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{p.kills}</td>
                 <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{p.winRate.toFixed(1)}%</td>
-                <td className="px-4 py-3 text-right font-display text-lg text-gradient-primary">{p.points.toLocaleString()}</td>
+                <td className="px-4 py-3 text-right font-display text-lg text-gradient-primary">{p.points.toLocaleString('en-IN')}</td>
               </tr>
             ))}
           </tbody>

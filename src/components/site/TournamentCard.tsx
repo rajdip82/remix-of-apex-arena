@@ -38,7 +38,7 @@ export function TournamentCard({ t, index = 0 }: { t: Tournament; index?: number
         <div className="grid grid-cols-3 gap-3 text-center">
           <Stat icon={Trophy} label="Prize" value={shortInr(t.prizePool)} accent />
           <Stat icon={Users} label="Slots" value={`${t.filled}/${t.slots}`} />
-          <Stat icon={Clock} label="Starts" value={countdown(t.startsAt)} />
+          <Stat icon={Clock} label="Starts" value={countdown(t.startsAt)} suppressHydration />
         </div>
         <div className="space-y-1.5">
           <div className="flex justify-between text-xs text-muted-foreground">
@@ -67,11 +67,11 @@ export function TournamentCard({ t, index = 0 }: { t: Tournament; index?: number
   );
 }
 
-function Stat({ icon: Icon, label, value, accent }: { icon: typeof Trophy; label: string; value: string; accent?: boolean }) {
+function Stat({ icon: Icon, label, value, accent, suppressHydration }: { icon: typeof Trophy; label: string; value: string; accent?: boolean; suppressHydration?: boolean }) {
   return (
     <div className="rounded-xl border border-border bg-black/30 p-2.5">
       <Icon className={`mx-auto h-3.5 w-3.5 ${accent ? "text-primary" : "text-muted-foreground"}`} />
-      <p className={`mt-1 text-sm font-bold ${accent ? "text-gradient-primary" : ""}`}>{value}</p>
+      <p suppressHydrationWarning={suppressHydration} className={`mt-1 text-sm font-bold ${accent ? "text-gradient-primary" : ""}`}>{value}</p>
       <p className="text-[9px] uppercase tracking-widest text-muted-foreground">{label}</p>
     </div>
   );

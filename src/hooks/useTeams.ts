@@ -15,34 +15,34 @@ export function useMyTeams() {
   const fetch = async () => {
     if (!user) { setTeams([]); setLoading(false); return; }
     setLoading(true);
-    const { data } = await supabase
-      .from("team_members")
-      .select("team_id, teams(*, team_members(*, profiles(*)))")
-      .eq("user_id", user.id);
-    const result = (data ?? [])
-      .map((d: any) => d.teams)
-      .filter(Boolean) as Team[];
-    setTeams(result);
+    try {
+      const { data, error } = await supabase
+        .from("team_members")
+        .select("team_id, teams(*, team_members(*, profiles(*)))")
+        .eq("user_id", user.id);
+      if (!error && data) {
+        const result = (data as any[]).map((d) => d.teams).filter(Boolean) as Team[];
+        setTeams(result);
+      }
+    } catch (_) {}
     setLoading(false);
   };
 
   useEffect(() => { fetch(); }, [user?.id]);
 
   const createTeam = async (insert: TablesInsert<"teams">) => {
-    if (!user) return null;
-    const { data, error } = await supabase
-      .from("teams")
-      .insert({ ...insert, captain_id: user.id })
-      .select()
-      .single();
-    if (error || !data) return error;
-    await supabase.from("team_members").insert({
-      team_id: data.id,
-      user_id: user.id,
-      role: "captain",
-    });
-    await fetch();
-    return null;
+    if (!user) return new Error("Not logged in");
+    try {
+      const { data, error } = await supabase
+        .from("teams")
+        .insert({ ...insert, captain_id: user.id })
+        .select()
+        .single();
+      if (error || !data) return error ?? new Error("Failed");
+      await supabase.from("team_members").insert({ team_id: data.id, user_id: user.id, role: "captain" });
+      await fetch();
+      return null;
+    } catch (e: any) { return e; }
   };
 
   return { teams, loading, refetch: fetch, createTeam };
@@ -53,13 +53,14 @@ export function useAllTeams() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase
-      .from("teams")
-      .select("*, team_members(*, profiles(*))")
-      .then(({ data }) => {
-        setTeams((data ?? []) as Team[]);
-        setLoading(false);
-      });
+    const load = async () => {
+      try {
+        const { data, error } = await supabase.from("teams").select("*, team_members(*, profiles(*))");
+        if (!error && data) setTeams(data as Team[]);
+      } catch (_) {}
+      setLoading(false);
+    };
+    load();
   }, []);
 
   return { teams, loading };

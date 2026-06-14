@@ -14,21 +14,28 @@ export function useTournaments(status?: Tournament["status"]) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let q = supabase.from("tournaments").select("*").order("start_time", { ascending: true });
-    if (status) q = q.eq("status", status);
-    q.then(({ data }) => {
-      setTournaments((data ?? []) as Tournament[]);
+    let sub: ReturnType<typeof supabase.channel> | null = null;
+
+    const load = async () => {
+      try {
+        let q = supabase.from("tournaments").select("*").order("start_time", { ascending: true });
+        if (status) q = q.eq("status", status);
+        const { data, error } = await q;
+        if (!error && data) setTournaments(data as Tournament[]);
+      } catch (_) {}
       setLoading(false);
-    });
+    };
 
-    const sub = supabase
-      .channel("tournaments-changes")
-      .on("postgres_changes", { event: "*", schema: "public", table: "tournaments" }, () => {
-        q.then(({ data }) => setTournaments((data ?? []) as Tournament[]));
-      })
-      .subscribe();
+    load();
 
-    return () => { sub.unsubscribe(); };
+    try {
+      sub = supabase
+        .channel("tournaments-changes")
+        .on("postgres_changes", { event: "*", schema: "public", table: "tournaments" }, load)
+        .subscribe();
+    } catch (_) {}
+
+    return () => { try { sub?.unsubscribe(); } catch (_) {} };
   }, [status]);
 
   return { tournaments, loading };
@@ -39,8 +46,14 @@ export function useTournament(id: string) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.from("tournaments").select("*").eq("id", id).single()
-      .then(({ data }) => { setTournament(data); setLoading(false); });
+    const load = async () => {
+      try {
+        const { data, error } = await supabase.from("tournaments").select("*").eq("id", id).single();
+        if (!error && data) setTournament(data as Tournament);
+      } catch (_) {}
+      setLoading(false);
+    };
+    load();
   }, [id]);
 
   return { tournament, loading };
@@ -53,29 +66,33 @@ export function useMyRegistrations() {
 
   useEffect(() => {
     if (!user) { setRegistrations([]); setLoading(false); return; }
-    supabase
-      .from("registrations")
-      .select("*, tournaments(*), teams(*)")
-      .eq("user_id", user.id)
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        setRegistrations((data ?? []) as Registration[]);
-        setLoading(false);
-      });
+    const load = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("registrations")
+          .select("*, tournaments(*), teams(*)")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false });
+        if (!error && data) setRegistrations(data as Registration[]);
+      } catch (_) {}
+      setLoading(false);
+    };
+    load();
   }, [user?.id]);
 
-  const register = async (
-    tournamentId: string,
-    teamId?: string | null,
-  ) => {
+  const register = async (tournamentId: string, teamId?: string | null) => {
     if (!user) return { error: "Not logged in" };
-    const insert: TablesInsert<"registrations"> = {
-      tournament_id: tournamentId,
-      user_id: user.id,
-      team_id: teamId ?? null,
-    };
-    const { error } = await supabase.from("registrations").insert(insert);
-    return { error: error?.message ?? null };
+    try {
+      const insert: TablesInsert<"registrations"> = {
+        tournament_id: tournamentId,
+        user_id: user.id,
+        team_id: teamId ?? null,
+      };
+      const { error } = await supabase.from("registrations").insert(insert);
+      return { error: error?.message ?? null };
+    } catch (e: any) {
+      return { error: e?.message ?? "Unknown error" };
+    }
   };
 
   return { registrations, loading, register };
@@ -85,23 +102,33 @@ export function useAdminTournaments() {
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetch = () => {
-    supabase.from("tournaments").select("*").order("created_at", { ascending: false })
-      .then(({ data }) => { setTournaments((data ?? []) as Tournament[]); setLoading(false); });
+  const fetch = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("tournaments")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (!error && data) setTournaments(data as Tournament[]);
+    } catch (_) {}
+    setLoading(false);
   };
 
   useEffect(() => { fetch(); }, []);
 
   const createTournament = async (data: TablesInsert<"tournaments">) => {
-    const { error } = await supabase.from("tournaments").insert(data);
-    if (!error) fetch();
-    return error;
+    try {
+      const { error } = await supabase.from("tournaments").insert(data);
+      if (!error) fetch();
+      return error;
+    } catch (e: any) { return e; }
   };
 
   const updateTournament = async (id: string, data: Partial<Tournament>) => {
-    const { error } = await supabase.from("tournaments").update(data).eq("id", id);
-    if (!error) fetch();
-    return error;
+    try {
+      const { error } = await supabase.from("tournaments").update(data).eq("id", id);
+      if (!error) fetch();
+      return error;
+    } catch (e: any) { return e; }
   };
 
   return { tournaments, loading, createTournament, updateTournament, refetch: fetch };

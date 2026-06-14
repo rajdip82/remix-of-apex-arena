@@ -28,14 +28,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const fetchProfile = async (userId: string) => {
     setProfileLoading(true);
-    const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
-    setProfile(data ?? null);
-    setProfileLoading(false);
-    return data;
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
+      setProfile(!error && data ? (data as Profile) : null);
+      return !error ? data : null;
+    } catch (_) {
+      setProfile(null);
+      return null;
+    } finally {
+      setProfileLoading(false);
+    }
   };
 
   const refreshProfile = async () => {
@@ -45,6 +51,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     await supabase.auth.signOut();
     setProfile(null);
+    setUser(null);
+    setSession(null);
   };
 
   useEffect(() => {
@@ -56,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setLoading(false);
       }
-    });
+    }).catch(() => setLoading(false));
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
@@ -75,6 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const isAdmin = profile?.role === "admin" || profile?.role === "moderator";
+  // needsProfileSetup: logged in, profile exists but no username set
   const needsProfileSetup = !!user && !!profile && !profile.username;
 
   return (

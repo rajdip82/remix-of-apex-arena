@@ -45,12 +45,25 @@ function SignupPage() {
       if (error.message.includes("already registered")) toast.error("Email already in use. Try signing in.");
       else toast.error(error.message);
       setLoading(false);
-    } else if (data.session) {
-      // Email confirmation is disabled — logged in immediately
+      return;
+    }
+
+    // Always upsert profile in app code — trigger may not fire in all Supabase configs
+    const userId = data.user?.id;
+    if (userId) {
+      await supabase.from("profiles").upsert({
+        id: userId,
+        username: uname,
+        full_name: data.user?.user_metadata?.full_name ?? null,
+      }, { onConflict: "id" });
+    }
+
+    if (data.session) {
+      // Email confirmation disabled — logged in immediately
       toast.success(`Welcome, ${uname}! You're all set.`);
-      // nav happens via the useEffect when user state updates
+      // useEffect redirects when user state updates
     } else {
-      // Email confirmation is enabled — user must confirm first
+      // Email confirmation enabled — must confirm first
       toast.success("Account created! Check your email to confirm, then sign in.");
       nav({ to: "/login" });
       setLoading(false);

@@ -34,7 +34,7 @@ function SignupPage() {
     if (uname.length < 3) { toast.error("Username must be at least 3 characters."); return; }
 
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
       password,
       options: {
@@ -44,11 +44,17 @@ function SignupPage() {
     if (error) {
       if (error.message.includes("already registered")) toast.error("Email already in use. Try signing in.");
       else toast.error(error.message);
+      setLoading(false);
+    } else if (data.session) {
+      // Email confirmation is disabled — logged in immediately
+      toast.success(`Welcome, ${uname}! You're all set.`);
+      // nav happens via the useEffect when user state updates
     } else {
+      // Email confirmation is enabled — user must confirm first
       toast.success("Account created! Check your email to confirm, then sign in.");
       nav({ to: "/login" });
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
